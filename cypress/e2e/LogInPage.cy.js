@@ -1,28 +1,16 @@
 import { landingPage } from "../page-object/LandingPage"
+import { logIn } from "../page-object/LogIn"
 describe('empty spec', () => {
-
-  const userInputLocator = '#loginusername'
-  const passwordInputLocator = '#loginpassword'
-  const userNameInsert = 'user232'
-  const passwordInsert = 'password'
-  const signInButtonLocator = '#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary'
-  const userNameTextLocator = '#nameofuser'
-  const expectedHaveText = 'Welcome user232'
-  const logOutTextLocator = '#logout2'
-  const expectedContainsText = 'out'
-
   it('Log In Passed', () => {
 
     const home = new landingPage()
+    const login = new logIn()
 
     home.visitPage()
     home.logInUser()
+    login.logInInfo()
+    home.logInAssertion()
 
-    cy.get(userInputLocator).type(userNameInsert)
-    cy.get(passwordInputLocator).type(passwordInsert)
-    cy.get(signInButtonLocator).click()
-    cy.get(userNameTextLocator).should('have.text',expectedHaveText)
-    cy.get(logOutTextLocator).contains(expectedContainsText)
 
   })
 })
